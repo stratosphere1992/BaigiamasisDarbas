@@ -18,7 +18,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <!-- Navigacijos eilutė čia -->
+        <nav class="navbar navbar-expand-md navbar-light bg-danger shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -72,9 +73,64 @@
             </div>
         </nav>
 
+        <!-- Antra navigacija čia -->
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-hover">
+                <a class="navbar-brand" href="#">
+                    
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHover" aria-controls="navbarDD" aria-expanded="false" aria-label="Navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarHover">
+                    <!-- Container-fluid nesuveikė, palieku container -->
+                    <ul class="container navbar-nav">
+                        @for($i=0; $i<12; $i++)
+                        <li class="nav-item dropdown">
+                            <!-- Kategorija -->
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
+                                Guitars
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <!-- Subkategorija -->
+                                    <a class="dropdown-item dropdown-toggle" href="">Electric Guitars</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <!--Antra Subkategorija -->
+                                            <a class="dropdown-item" href="">Solid body</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @endfor
+                    </ul>
+                </div>
+            </nav>
+        <!-- Navigacijos pabaiga -->
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    <!-- Navigacijos stilius -->
+    <style>
+        .dropdown:hover>.dropdown-menu{
+            display: block;
+        }
+        /* Responsive/Reaguojantis menu stilius */
+        @media only screen and (max-width: 9991px) {
+            .navbar-hover .show> .dropdown-toggle::after{
+                transform: rotate(-90deg);
+            }
+        }   
+        @media only screen and (min-width: 492px) {
+            .navbar-hover .collapse ul li {position: relative;}
+            .navbar-hover .collapse ul li:hover > ul {display: block;}
+            .navbar-hover .collapse ul ul {position: absolute; top: 100%; left: 0; min-width: 250px; display: none}
+            .navbar-hover .collapse ul ul ul {position: absolute; top: 0;left: 100%; min-width: 250px; display: none}
+        }
+    </style>
+
 </body>
 </html>
