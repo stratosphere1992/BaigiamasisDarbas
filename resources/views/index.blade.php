@@ -3,8 +3,8 @@
 
 <!-- Pagrindionio puslapio karuselė -->
 <div class="slider" style="margin-top: -25px">
-<!-- Kortelių ketimasis aktyvuotas su data-bs-ride="carousel", pridėta 10s intervalas -->
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
+<!-- Kortelių ketimasis aktyvuotas su data-bs-ride="carousel", pridėta 7s intervalas -->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
     <div class="carousel-inner">
         <div class="carousel-item active">
         <img src="/slider/slider1.png" class="d-block w-100" alt="...">
