@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,12 +34,9 @@ Route::get('/auth', function () {
 //     return view('backend.category.create');
 // });
 
-// Route::group(['prefix'=>'auth'], function() {
-//     Route::get('/category/create', [CategoryController::class, 'create']);
-// });
-
 Route::group(['prefix'=>'auth'], function() {
-    Route::get('/category/create','CategoryController@create');
+    Route::get('/category/create', [CategoryController::class, 'create']);
+    Route::get('/category', [CategoryController::class, 'index']);
 });
 
 Auth::routes();

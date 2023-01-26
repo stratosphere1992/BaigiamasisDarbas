@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // Categorijų atvaizdavimas puslapyje
+        // Kategorijų atvaizdavimas puslapyje
+        dd('aaaaaaaaa');
     }
 
     /**

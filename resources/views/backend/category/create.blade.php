@@ -1,3 +1,9 @@
+<!-- Šiam puspaliui extend nesuveikia, nepakrauna stiliaus, pavyko ištaisyti panaudojus asset -->
+<link rel="stylesheet" href="{{ asset('admin/template/vendors/mdi/css/materialdesignicons.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/template/vendors/base/vendor.bundle.base.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/template/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/template/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/template/images/favicon.png') }}">
 @extends('backend.layouts.master')
 @section('content')
 
@@ -49,3 +55,16 @@
     </div>
 </div>
 @endsection
+<!-- Šiam puspaliui extend nesuveikia, nepakrauna stiliaus, pavyko ištaisyti panaudojus asset -->
+<script src="{{ asset('admin/template/vendors/base/vendor.bundle.base.js') }}"></script>
+<script src="{{ asset('admin/template/vendors/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('admin/template/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('admin/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('admin/template/js/off-canvas.js') }}"></script>
+<script src="{{ asset('admin/template/js/hoverable-collapse.js') }}"></script>
+<script src="{{ asset('admin/template/js/template.js') }}"></script>
+<script src="{{ asset('admin/template/js/dashboard.js') }}"></script>
+<script src="{{ asset('admin/template/js/data-table.js') }}"></script>
+<script src="{{ asset('admin/template/js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('admin/template/js/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('admin/template/js/jquery.cookie.js" type="text/javascript') }}"></script>
