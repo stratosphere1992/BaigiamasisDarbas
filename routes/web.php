@@ -35,8 +35,12 @@ Route::get('/auth', function () {
 // });
 
 Route::group(['prefix'=>'auth'], function() {
-    Route::get('/category/create', [CategoryController::class, 'create']);
-    Route::get('/category', [CategoryController::class, 'index']);
+
+    Route::resource('/category',CategoryController::class);
+
+    // Route::get('/category/create', [CategoryController::class, 'create']);
+    // Route::get('/category', [CategoryController::class, 'index']);
+    // Route::post('/category/store', [CategoryController::class, 'store']);
 });
 
 Auth::routes();
