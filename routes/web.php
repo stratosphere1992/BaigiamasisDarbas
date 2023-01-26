@@ -21,10 +21,25 @@ Route::get('/home', function () {
     return view('home');
 });
 
+// Kelias į administratoriaus puslapį
 Route::get('/auth', function () {
     return view('backend.admin.index');
 });
 
+// Neveikia stilius nurodžius kelią /auth/category
+
+// Route::get('/authC', function () {
+//     return view('backend.category.create');
+// });
+
+// Route::group(['prefix'=>'auth'], function() {
+//     Route::get('/category/create', [CategoryController::class, 'create']);
+// });
+
+Route::group(['prefix'=>'auth'], function() {
+    Route::get('/category/create','CategoryController@create');
+});
+
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
