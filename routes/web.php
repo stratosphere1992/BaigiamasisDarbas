@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,10 @@ Route::get('/auth', function () {
 
 Route::group(['prefix'=>'auth'], function() {
 
+    // Kategorijos kelias
     Route::resource('/category',CategoryController::class);
+    // Subkategorijos kelias
+    Route::resource('/subcategory', SubcategoryController::class);
 
     // Route::get('/category/create', [CategoryController::class, 'create']);
     // Route::get('/category', [CategoryController::class, 'index']);

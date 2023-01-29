@@ -43,6 +43,7 @@ class CategoryController extends Controller
     {
         // Įrašų patalpinimui
         $image = $request->file('image')->store('public/category');
+        // Tikrina ar tuščias
         Category::create([
             'name'=>$name= $request->name,
             'image'=>$image ,

@@ -9,42 +9,49 @@
 
 <div class="main-panel">
     <div class="content-wrapper">
-        <h3>Add Category</h3>
+        <!-- Pranešimas apie ištrintą įrašą -->
+        @include('backend.inc.message')
+        <h3>Add Subcategory</h3>
         <div class="row justify-content-center">
             <div class="col-md-10">
 
                 <div class="card">
                     <div class="card-body">
 
-                        <!-- Veiksmas: store metodas -->
-                        <form class="forms-sample" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">@csrf
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                    placeholder="name of category">
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>
-                                            {{ $message }}
-                                        </strong>
+                        <!-- Veiksmas: store metodas. Enctype nėra būtinas, nes nėra naudojami paveikslėliai -->
+                        <form class="forms-sample" action="{{ route('subcategory.store') }}" method="post">@csrf
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                        placeholder="name of subcategory">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
 
-                                    </span>
-                                @enderror
+                                        </span>
+                                    @enderror
+                            </div>
+                            <!-- "Dropdown menu" kategorijoms pasirinkti -->
+                            <div class="form-group">
+                                    <label for="name">Choose category</label>
+                                    <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
+                                        <option value="">Select category</option>
+                                        @foreach (App\Models\Category::all() as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>Í
+                                        @endforeach
+                                    </select>
+                                    @error('category_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>
+                                                {{ $message }}
+                                            </strong>
+
+                                        </span>
+                                    @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                    name="image">
-                                @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>
-                                            {{ $message }}
-                                        </strong>
-
-                                    </span>
-                                @enderror
-                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
