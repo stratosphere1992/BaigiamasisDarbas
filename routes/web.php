@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\ChildcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +42,8 @@ Route::group(['prefix'=>'auth'], function() {
     Route::resource('/category',CategoryController::class);
     // Subkategorijos kelias
     Route::resource('/subcategory', SubcategoryController::class);
-
-    // Route::get('/category/create', [CategoryController::class, 'create']);
-    // Route::get('/category', [CategoryController::class, 'index']);
-    // Route::post('/category/store', [CategoryController::class, 'store']);
+    // Vaikinės kategorijos
+    Route::resource('/childcategory', ChildcategoryController::class);
 });
 
 Auth::routes();
