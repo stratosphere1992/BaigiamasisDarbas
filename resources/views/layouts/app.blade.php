@@ -85,26 +85,30 @@
                 <div class="collapse navbar-collapse" id="navbarHover">
                     <!-- Container-fluid nesuveikė, palieku container -->
                     <ul class="container navbar-nav">
-                        @for($i=0; $i<12; $i++)
+                        @foreach($menus as $menuItem)
                         <li class="nav-item dropdown">
                             <!-- Kategorija -->
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
-                                Guitars
+                                {{ $menuItem->name }}
                             </a>
                             <ul class="dropdown-menu">
+                                @foreach($menuItem->subcategories as $subMenuItem)
                                 <li>
                                     <!-- Subkategorija -->
-                                    <a class="dropdown-item dropdown-toggle" href="">Electric Guitars</a>
+                                    <a class="dropdown-item dropdown-toggle" href="">{{ $subMenuItem->name }}</a>
                                     <ul class="dropdown-menu">
+                                    @foreach($subMenuItem->childcategories as $subMenuItem)
                                         <li>
                                             <!--Antra Subkategorija -->
-                                            <a class="dropdown-item" href="">Solid body</a>
+                                            <a class="dropdown-item" href="">{{ $subMenuItem->name }}</a>
                                         </li>
+                                        @endforeach
                                     </ul>
                                 </li>
+                                @endforeach
                             </ul>
                         </li>
-                        @endfor
+                        @endforeach
                     </ul>
                 </div>
             </nav>

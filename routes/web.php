@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ChildcategoryController;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,11 @@ use App\Http\Controllers\ChildcategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Sukurtas naujas kelias
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 Route::get('/home', function () {
     return view('home');
@@ -45,6 +47,8 @@ Route::group(['prefix'=>'auth'], function() {
     // Vaikinės kategorijos
     Route::resource('/childcategory', ChildcategoryController::class);
 });
+
+Route::get('/', [MenuController::class, 'menu']);
 
 Auth::routes();
 
