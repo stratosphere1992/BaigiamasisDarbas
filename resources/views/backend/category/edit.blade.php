@@ -9,18 +9,19 @@
 
 <div class="main-panel">
     <div class="content-wrapper">
-        <h3>Add Category</h3>
+        <h3>Update Category</h3>
         <div class="row justify-content-center">
             <div class="col-md-10">
 
                 <div class="card">
                     <div class="card-body">
 
-                        <!-- Veiksmas: store metodas, post neveikia!!! -->
-                        <form class="forms-sample" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">@csrf
+                        <!-- Veiksmas: update metodas, post neveikia!!! -->
+                        <form class="forms-sample" action="{{route('category.update',[$category->id])}}" method="post" enctype="multipart/form-data">@csrf
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                                <input type="text" name="name" value="{{$category->name}}" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="name of category">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

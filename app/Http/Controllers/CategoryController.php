@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// Kelias į request
 use App\Http\Requests\CategoryFormRequest;
+use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -16,7 +18,8 @@ class CategoryController extends Controller
     public function index()
     {
         // Kategorijų atvaizdavimas puslapyje
-        dd('aaaaaaaaa');
+        $categories = Category::get();
+        return view('backend.category.index', compact('categories'));
     }
 
     /**
@@ -39,7 +42,14 @@ class CategoryController extends Controller
     public function store(CategoryFormRequest $request)
     {
         // Įrašų patalpinimui
-        dd('sotre method');
+        $image = $request->file('image')->store('public/category');
+        Category::create([
+            'name'=>$name= $request->name,
+            'image'=>$image ,
+            'slug'=>Str::slug( $name)
+        ]);
+        // Poopout pranešimas
+        return redirect()->route('category.index')->with('message', 'Category created successfully');
     }
 
     /**
@@ -62,6 +72,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         // Įrašo koreagavimas
+        $category = Category::find($id);
+        return view('backend.category.edit',compact('category'));
     }
 
     /**
@@ -73,7 +85,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Tikrinama ar yra įkeltas paveikslėlis prieš įkeliant naują, atnaujinama duombazė
+        $category = Category::find($id);
+        if($request->hasFile('image')) {
+            Storage::delete($category->image);
+            $image = $request->file('image')->store('public/category');
+            $category->update(['name'=>$request->name,'image'=>$image]);
+        }
+        // Jeigu nėra paveikslėlio, atnaujinamas tik pavadinimas
+        $category->update(['name'=>$request->name]);
+        return redirect()->route('category.index')->with('message', 'Category updated successfully');
     }
 
     /**
@@ -84,6 +105,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Viso kategorijos įrašo pašalinimas
+        $category = Category::find($id);
+        if (Storage::delete($category->image)) {
+            $category->delete();
+        }
+        return back()->with('message', 'Category deleted successfully');
     }
 }
