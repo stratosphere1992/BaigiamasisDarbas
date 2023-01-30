@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ChildcategoryController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\AdvertisementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,14 @@ Route::group(['prefix'=>'auth'], function() {
 });
 
 Route::get('/', [MenuController::class, 'menu']);
+
+// Skelbimai
+Route::get('/ads/create', [AdvertisementController::class, 'create']);
+
+// View::composer(['*'],function($view){
+//     $menus = App\Models\Category::with('subcategories')->get();
+//     $view->with('menus',$menus);
+// });
 
 Auth::routes();
 
