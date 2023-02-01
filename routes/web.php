@@ -55,6 +55,8 @@ Route::get('/', [MenuController::class, 'menu']);
 // Skelbimai
 Route::get('/ads/create', [AdvertisementController::class, 'create']);
 
+Route::post('/ads/store', [AdvertisementController::class, 'store'])->middleware('auth')->name('ads.store');
+
 // View::composer(['*'],function($view){
 //     $menus = App\Models\Category::with('subcategories')->get();
 //     $view->with('menus',$menus);
