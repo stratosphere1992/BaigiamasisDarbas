@@ -18,8 +18,8 @@
     
 </head>
 <body>
-    <!-- <div id="app"> -->
     <div>
+        <div></div>
         <!-- Navigacijos eilutė čia -->
         <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm">
             <div class="container">

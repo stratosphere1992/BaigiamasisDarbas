@@ -1,11 +1,12 @@
 @extends('layouts.app')
-@section('content')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-        <div class="card">
+        @include('sidebar')
+
+        <!-- <div class="card">
                 <div class="card-body">
                     <img src="/img/man.jpg" class="mx-auto d-block img-thumbnail" width="130">
                     <p class="text-center"><b>Mr. User</b></p>
@@ -20,7 +21,8 @@
                     <a href="">Message</a>
                 </div>
             </div>
-        </div>
+        </div> -->
+
         <div class="col-md-9">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -57,7 +59,9 @@
                         </div>
 
                         <label class="mt-2" for="file"><b>Choose category</b></label>
-                        <div class="d-flex flex-row align-items-center flex-wrap mt-2">
+                        <div id="cat"></div>
+                        <!-- <div class="d-flex flex-row align-items-center flex-wrap mt-2">
+
                             <div class="col-md-4">
                                 <select class="form-select" name="category_id">
                                     <option value="">choose category</option>
@@ -66,6 +70,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="col-md-4">
                             <select class="form-select" name="subcategory_id">
                                     <option value="">choose subcategory</option>
@@ -74,6 +79,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="col-md-4">
                             <select class="form-select ml-1" name="childcategory_id">
                                     <option value="">choose childcategory</option>
@@ -82,7 +88,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                            
+                        </div> -->
 
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -120,7 +127,8 @@
                         </div>
 
                         <label class="mt-2" for="file"><b>Choose address</b></label>
-                        <div class="d-flex flex-row align-items-center flex-wrap mt-2">
+                        <div id="csc"></div>
+                        <!-- <div class="d-flex flex-row align-items-center flex-wrap mt-2">
                             <div class="col-md-4">
                                 <select class="form-select" name="country_id">
                                     <option value="">Select country</option>
@@ -145,7 +153,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label for="location">Seller contact number</label>
@@ -169,7 +177,7 @@
     </div>
 </div>
 
-<style>
+<!-- <style>
     .vertical-menu a{
         background-color: #fff;
         color: #000;
@@ -181,5 +189,5 @@
         background-color: green;
         color: #fff;
     }
-</style>
+</style> -->
 @endsection
