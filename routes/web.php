@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
-
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ChildcategoryController;
-use App\Http\Controllers\MenuController;
+// use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AdvertisementController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\FrontAdsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,18 +52,28 @@ Route::group(['prefix'=>'auth'], function() {
     Route::resource('/childcategory', ChildcategoryController::class);
 });
 
-Route::get('/', [MenuController::class, 'menu']);
+// MenuController pakeistas į FrontAdsController naudojant scope
+// Route::get('/', [MenuController::class, 'menu']);
 
 // Skelbimai
-Route::get('/ads/create', [AdvertisementController::class, 'create'])->middleware('auth');
+Route::get('/ads/create', [AdvertisementController::class, 'create'])->name('ads.create')->middleware('auth');
 Route::post('/ads/store', [AdvertisementController::class, 'store'])->middleware('auth')->name('ads.store');
-Route::get('/ads', [AdvertisementController::class, 'index'])->middleware('auth');
+Route::get('/ads', [AdvertisementController::class, 'index'])->name('ads.index')->middleware('auth');
+Route::get('/ads/{id}/edit', [AdvertisementController::class, 'edit'])->name('ads.edit')->middleware('auth');
+Route::put('/ads/{id}/update', [AdvertisementController::class, 'update'])->name('ads.update')->middleware('auth');
+Route::delete('/ads/{id}/delete', [AdvertisementController::class, 'destroy'])->name('ads.destroy')->middleware('auth');
+// Profilis
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::post('/profile', [ProfileController::class, 'updateProfile'])->name('update.profile')->middleware('auth');
 
-// View::composer(['*'],function($view){
-//     $menus = App\Models\Category::with('subcategories')->get();
-//     $view->with('menus',$menus);
-// });
+Route::get('/', [FrontAdsController::class, 'index']);
+// FrontEnd dalis
+Route::get('/product/{categorySlug}', [FrontEndController::class, 'findBasedOnCategory'])->name('category.show');
+Route::get('/product/{categorySlug}/{subcategorySlug}', [FrontEndController::class, 'findBasedOnSubcategory'])->name('subcategory.show');
+Route::get('/product/{categorySlug}/{subcategorySlug}/{childCategorySlug}', [FrontEndController::class, 'findBasedOnChildcategory'])->name('childcategory.show');
+Route::get('/products/{id}/{slug}', [FrontendController::class, 'show'])->name('product.view');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

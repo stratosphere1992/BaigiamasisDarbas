@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Advertisement;
 use Illuminate\Support\Str;
+use App\Http\Requests\AdsFormUpdateRequest;
 
 class AdvertisementController extends Controller
 {
@@ -17,7 +18,7 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $ads = Advertisement::where('user_id',auth()->user()->id)->get();
+        $ads = Advertisement::latest()->where('user_id',auth()->user()->id)->get();
         return view('ads.index',compact('ads'));
     }
 
@@ -52,7 +53,7 @@ class AdvertisementController extends Controller
         $data['user_id']=auth()->user()->id;
 
         Advertisement::create($data);
-        return "created";
+        return redirect()->route('ads.index')->with('message','Your ad was created!');
     }
 
     /**
@@ -74,7 +75,10 @@ class AdvertisementController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $ad =  Advertisement::find($id);
+        $this->authorize('edit-ad',$ad);
+        return view('ads.edit', compact('ad'));
     }
 
     /**
@@ -84,9 +88,28 @@ class AdvertisementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdsFormUpdateRequest $request, $id)
     {
-        //
+        $ad = Advertisement::find($id);
+        $featureImage = $ad->feature_image;
+        $firstImage = $ad->first_image;
+        $secondImage = $ad->second_image;
+        $data = $request->all();
+        if ($request->hasFile('feature_image')) {
+            $featureImage = $request->file('feature_image')->store('public/ads');
+        }
+        if ($request->hasFile('first_image')) {
+            $firstImage = $request->file('first_image')->store('public/ads');
+        }
+        if ($request->hasFile('second_image')) {
+            $secondImage = $request->file('second_image')->store('public/ads');
+        }
+        $data['feature_image'] = $featureImage;
+        $data['first_image'] = $firstImage;
+        $data['second_image'] = $secondImage;
+
+        $ad->update($data);
+        return redirect()->route('ads.index')->with('message','Your ad was updated!');
     }
 
     /**
@@ -97,6 +120,14 @@ class AdvertisementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ad = Advertisement::find($id);
+        $ad->delete();
+        return back()->with('message','Ad deleted successfully');
+    }
+
+    public function pendingAds()
+    {
+        $ads = Advertisement::where('user_id',auth()->user()->id)->where('published',0)->get();
+        return  view('ads.pending',compact('ads'));
     }
 }

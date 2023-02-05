@@ -53,11 +53,16 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                
+                                    <a class="dropdown-item" href="{{ url('ads') }}">{{ __('My Ads') }}</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -90,19 +95,19 @@
                         @foreach($menus as $menuItem)
                         <li class="nav-item dropdown">
                             <!-- Kategorija -->
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="{{ route('category.show',$menuItem->slug )}}" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
                                 {{ $menuItem->name }}
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach($menuItem->subcategories as $subMenuItem)
                                 <li>
                                     <!-- Subkategorija -->
-                                    <a class="dropdown-item dropdown-toggle" href="">{{ $subMenuItem->name }}</a>
+                                    <a class="dropdown-item dropdown-toggle" href="{{ route('subcategory.show',[$menuItem->slug,$subMenuItem->slug]) }}">{{$subMenuItem->name}}</a>
                                     <ul class="dropdown-menu">
-                                    @foreach($subMenuItem->childcategories as $subMenuItem)
+                                    @foreach($subMenuItem->childcategories as $childMenu)
                                         <li>
                                             <!--Antra Subkategorija -->
-                                            <a class="dropdown-item" href="">{{ $subMenuItem->name }}</a>
+                                            <a class="dropdown-item" href="{{ route('childcategory.show',[$menuItem->slug,$subMenuItem->slug,$childMenu->slug]) }}">{{ $childMenu->name }}</a>
                                         </li>
                                         @endforeach
                                     </ul>
@@ -135,6 +140,21 @@
             .navbar-hover .collapse ul li:hover > ul {display: block;}
             .navbar-hover .collapse ul ul {position: absolute; top: 100%; left: 0; min-width: 250px; display: none}
             .navbar-hover .collapse ul ul ul {position: absolute; top: 0;left: 100%; min-width: 250px; display: none}
+        }
+        .vertical-menu a{
+            background-color: #fff;
+            color: #000;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            }
+        .vertical-menu a:hover{
+            background-color: green;
+            color: #fff;
+        }
+        .vertical-menu a:active{
+            background-color: green;
+            color: #fff;
         }
     </style>
 
