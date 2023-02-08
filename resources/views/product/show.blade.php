@@ -67,9 +67,31 @@
                 @else
                     <img src="{{Storage::url($advertisement->user->avatar)}}" width="120">
                 @endif
-                <p>{{ $advertisement->user->name }}</p>
+                <p>
+                   <a href="{{ route('show.user.ads',[$advertisement->user_id]) }}"> {{ $advertisement->user->name }}</a>
+                </p>
+                <div>
+                    <p>
+                    @if($advertisement->phone_number)
+                        <show-number :phone-number="{{ $advertisement->phone_number }}"></show-number>
+                    @endif
+                    </p>
+                </div>
+                
+                    <span>
+                        @if(Auth()->check())
+                        @if(Auth()->user()->id!=$advertisement->user_id)
+                        <message-component
+                            seller-name="{{ $advertisement->user->name }}"
+                            :user-id="{{ auth()->user()->id }}"
+                            :receiver-id="{{ $advertisement->user->id }}"
+                            :ad-id="{{ $advertisement->id }}"
+                        ></message-component>
+                        @endif
+                        @endif
+                    </span>
+  
             </div>
-
         </div>
     </div>
 

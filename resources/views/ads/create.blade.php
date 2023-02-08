@@ -42,7 +42,7 @@
                         </div>
 
                         <label class="mt-2" for="file"><b>Choose category</b></label>
-                        <div id="cat"></div>
+                        <category-component></category-component>
 
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -80,8 +80,7 @@
                         </div>
 
                         <label class="mt-2" for="file"><b>Choose address</b></label>
-                        <div id="csc"></div>
-
+                        <adress-component></adress-component>
                         <div class="form-group">
                             <label for="location">Seller contact number</label>
                             <input type="number" class="form-control" name="phone_number">

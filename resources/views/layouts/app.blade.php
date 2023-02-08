@@ -18,7 +18,7 @@
     
 </head>
 <body>
-    <div>
+    <div id="app">
         <div></div>
         <!-- Navigacijos eilutė čia -->
         <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm">
@@ -60,9 +60,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                
-                                    <a class="dropdown-item" href="{{ url('ads') }}">{{ __('My Ads') }}</a>
-
+                                @if(Auth::check() && Auth::user()->isadmin==1)
+                                    <a class="dropdown-item" href="{{ url('auth/category') }}">{{ __('Dashboard') }}</a>
+                                @else
+                                    <a class="dropdown-item" href="{{ url('ads') }}">{{ __('Ads') }}</a>
+                                    <a class="dropdown-item" href="{{ url('messages') }}">{{ __('Messages') }}</a>
+                                @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
