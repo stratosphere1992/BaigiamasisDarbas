@@ -13,33 +13,6 @@ window.$ = jQuery;
 
 
 // import { createApp } from "vue";
-
-// import { createApp } from "vue/dist/vue.esm-bundler.js";
-
-// import CategoryDropDown from './components/CategoryDropDown.vue';
-// createApp(CategoryDropDown).mount('#cat');
-
-// import AdressDropDown from './components/AdressDropDown.vue';
-// createApp(AdressDropDown).mount('#csc');
-
-// import Message from './components/Message.vue';
-// const app = createApp({});
-// app.component('message-component', Message);
-// app.mount('#msg');
-
-// import Conversation from './components/Conversation.vue';
-// const app2 = createApp({});
-// app2.component('conversation-component', Conversation);
-// app2.mount('#con');
-
-// import ShowPhoneNumber from './components/ShowPhoneNumber.vue';
-// const app3 = createApp({});
-// app3.component('show-number', ShowPhoneNumber);
-// app3.mount('#num');
-
-
-
-
 import { createApp } from "vue/dist/vue.esm-bundler.js";
 
 import CategoryDropDown from './components/CategoryDropDown.vue';
@@ -58,18 +31,10 @@ const app = createApp({
     }
 });
 
-  app.component('category-component', CategoryDropDown);
-  app.component('adress-component', AdressDropDown);
-  app.component('message-component', Message);
-  app.component('conversation-component', Conversation);
-  app.component('show-number', ShowPhoneNumber);
+app.component('category-component', CategoryDropDown);
+app.component('adress-component', AdressDropDown);
+app.component('message-component', Message);
+app.component('conversation-component', Conversation);
+app.component('show-number', ShowPhoneNumber);
 
-  app.mount('#app');
-
-  // const app = createApp({
-  //   components: {
-  //     Message
-  //   }
-  // });
-  // app.component('message-component', Message);
-  // app.mount('#app');
+app.mount('#app');

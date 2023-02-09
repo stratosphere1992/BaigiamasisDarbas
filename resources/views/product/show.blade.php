@@ -68,7 +68,7 @@
                     <img src="{{Storage::url($advertisement->user->avatar)}}" width="120">
                 @endif
                 <p>
-                   <a href="{{ route('show.user.ads',[$advertisement->user_id]) }}"> {{ $advertisement->user->name }}</a>
+                   <a href="{{ route('show.user.ads',[$advertisement->user_id]) }}">{{ $advertisement->user->name }}</a>
                 </p>
                 <div>
                     <p>
