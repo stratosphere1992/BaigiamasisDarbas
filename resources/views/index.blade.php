@@ -53,7 +53,7 @@
             <div class="row">
             @forelse($secondsAds as $secondsad)
                 <div class="col-3">
-                    <a href="{{ route('product.view',[$secondsad->id,$secondstad->slug]) }}"><img src="{{ Storage::url($secondsad->feature_image) }}" class="img-thumbnail"></a>
+                    <a href="{{ route('product.view',[$secondsad->id,$secondsad->slug]) }}"><img src="{{ Storage::url($secondsad->feature_image) }}" class="img-thumbnail"></a>
                     <p class="text-center card-footer" style="color: #222;">{{ $secondsad->name }} / {{ $secondsad->price }} EUR</p>
                 </div>
                 @empty
@@ -79,7 +79,7 @@
                 @forelse($firstAdsForAmps as $firstAdsForAmp)
                 {{-- <a href="{{ route('product.view',[$firstad->id,$firstad->slug]) }}"></a> --}}
                 <div class="col-3">
-                    <a href="{{ route('product.view',[ $firstAdsForAmp->id,$ $firstAdsForAmp->slug]) }}"><img src="{{ Storage::url( $firstAdsForAmp->feature_image) }}" class="img-thumbnail"></a>
+                    <a href="{{ route('product.view', [$firstAdsForAmp->id, $firstAdsForAmp->slug]) }}"><img src="{{ Storage::url( $firstAdsForAmp->feature_image) }}" class="img-thumbnail"></a>
                     <p class="text-center card-footer" style="color: #222;">{{  $firstAdsForAmp->name }} / {{  $firstAdsForAmp->price }} EUR</p>
                 </div>
                 @empty

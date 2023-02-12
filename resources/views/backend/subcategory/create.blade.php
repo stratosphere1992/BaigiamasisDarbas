@@ -11,10 +11,9 @@
     <div class="content-wrapper">
         <!-- Pranešimas apie ištrintą įrašą -->
         @include('backend.inc.message')
-        <h3>Add Subcategory</h3>
         <div class="row justify-content-center">
             <div class="col-md-10">
-
+            <h3>Add Subcategory</h3>
                 <div class="card">
                     <div class="card-body">
 

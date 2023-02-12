@@ -36,6 +36,15 @@ class Advertisement extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function userads()
+    {
+        return $this->belongsToMany(User::class);
+    }
+    // public function didUserSavedAd()
+    // {
+    //     return $this->belongsToMany(User::class);
+    // }
+
     // Pakeitimas MenuController
 
     // Gitaros

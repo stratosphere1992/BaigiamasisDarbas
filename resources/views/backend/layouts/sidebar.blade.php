@@ -3,9 +3,9 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{ route('home')}}">
               <i class="mdi mdi-home menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">Home</span>
             </a>
           </li>
           <!-- Kategorija -->
@@ -52,12 +52,12 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <i class="mdi mdi-view-headline menu-icon"></i>
-              <span class="menu-title">Form elements</span>
+            <a class="nav-link" href="{{ route('all.ads') }}">
+              <i class="mdi mdi-circle-outline menu-icon"></i>
+              <span class="menu-title">All advertisements</span>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
               <i class="mdi mdi-chart-pie menu-icon"></i>
               <span class="menu-title">Charts</span>
@@ -96,6 +96,6 @@
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>

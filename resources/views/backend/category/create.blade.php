@@ -9,10 +9,9 @@
 
 <div class="main-panel">
     <div class="content-wrapper">
-        <h3>Add Category</h3>
         <div class="row justify-content-center">
             <div class="col-md-10">
-
+            <h3>Add Category</h3>
                 <div class="card">
                     <div class="card-body">
 

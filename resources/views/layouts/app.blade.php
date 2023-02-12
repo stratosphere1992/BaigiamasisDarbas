@@ -98,7 +98,7 @@
                         @foreach($menus as $menuItem)
                         <li class="nav-item dropdown">
                             <!-- Kategorija -->
-                            <a class="nav-link dropdown-toggle" href="{{ route('category.show',$menuItem->slug )}}" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle ms-3" href="{{ route('category.show',$menuItem->slug )}}" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
                                 {{ $menuItem->name }}
                             </a>
                             <ul class="dropdown-menu">

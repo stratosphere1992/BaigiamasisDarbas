@@ -11,6 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\FrontAdsController;
 use App\Http\Controllers\SendMessageController;
+use App\Http\Controllers\SaveAdController;
+use App\Http\Controllers\AdminListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +52,11 @@ Route::group(['prefix'=>'auth','middleware'=>'admin'], function() {
     Route::resource('/subcategory', SubcategoryController::class);
     // Vaikinės kategorijos
     Route::resource('/childcategory', ChildcategoryController::class);
+
+    //Administratoriaus skelbimų sąrašas
+    Route::get('/allads', [AdminListingController::class, 'index'])->name('all.ads');
 });
+
 
 // MenuController pakeistas į FrontAdsController naudojant scope
 // Route::get('/', [MenuController::class, 'menu']);
@@ -81,5 +87,6 @@ Route::get('/users', [SendMessageController::class, 'chatWithThisUser']);
 Route::get('/message/user/{id}', [SendMessageController::class, 'showMessages']);
 Route::post('/start-conversation', [SendMessageController::class, 'startConversation']);
 
-// Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/ad/save', [SaveAdController::class, 'saveAd']);
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

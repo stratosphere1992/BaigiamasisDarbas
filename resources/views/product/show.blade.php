@@ -60,12 +60,16 @@
                 <p>Posted: {{ $advertisement->created_at->diffForHumans() }}</p>
                 <p>Listing location: {{ $advertisement->listing_location }}</p>
 
+                {{-- <save-ad
+                    :ad-id="{{ $advertisement->id }}"
+                    :user-id="{{ auth()->user()->id }}">
+                </save-ad> --}}
 
                 <hr>
                 @if(!$advertisement->user->avatar)
-                    <img src="/img/man.jpg" width="120">
+                    <img src="/img/man.jpg" width="120" style="border-radius: 50%">
                 @else
-                    <img src="{{Storage::url($advertisement->user->avatar)}}" width="120">
+                    <img src="{{Storage::url($advertisement->user->avatar)}}" width="120" style="border-radius: 50%">
                 @endif
                 <p>
                    <a href="{{ route('show.user.ads',[$advertisement->user_id]) }}">{{ $advertisement->user->name }}</a>
